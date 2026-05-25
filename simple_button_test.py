@@ -1,6 +1,7 @@
 import re
 from playwright.sync_api import Page, expect
 
+# We check if the page has a button and we click on it
 def test_simple_buttons(page: Page):
     page.goto("https://www.qa-practice.com/")
 
@@ -12,7 +13,7 @@ def test_simple_buttons(page: Page):
     page.get_by_role("button", name="Click").click()
     expect(page.get_by_text("Submitted")).to_be_visible()
 
-    # Check the "Looks like a button" tab
+# Check the "Looks like a button" tab which has a button that has actually the role of a link, not a button :)
 def test_looks_like_a_button(page: Page):
     page.goto("https://www.qa-practice.com/")
     page.get_by_role("link", name="Simple button").click()
@@ -24,6 +25,7 @@ def test_looks_like_a_button(page: Page):
     page.get_by_role("link", name="Click").click()
     expect(page.get_by_text("Submitted")).to_be_visible()
 
+# Check the Enabled/Disabled State, their results after clicking submit and some edge cases
 def test_disabled(page: Page):
     page.goto("https://www.qa-practice.com/")
     page.get_by_role("link", name="Simple button").click()

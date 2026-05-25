@@ -1,11 +1,13 @@
 import re
 from playwright.sync_api import Page, expect
 
+# Check if the text area is visible
 def test_text_area_visibility(page: Page):
     page.goto("https://www.qa-practice.com/elements/textarea/single")
     text_field = page.get_by_role("textbox", name="Text area")
     expect(text_field).to_be_visible()
 
+# Check if clicking the Submit button without the text area field filled with strings returns any results
 def test_text_area_required_field(page: Page):
     page.goto("https://www.qa-practice.com/elements/textarea/single")
     expect(page.get_by_role("button", name="Submit")).to_be_visible()
@@ -16,6 +18,8 @@ def test_text_area_required_field(page: Page):
     page.get_by_role("button", name="Submit").click()
     expect(page.get_by_text("You entered Yoooy")).to_be_visible()
 
+# Check filling in multiple text areas, the requirements for completion, and that the results
+# appear in the desired order
 def test_text_area_multiple_visibility(page: Page):
     page.goto("https://www.qa-practice.com/elements/textarea/textareas")
     chapter_1 = page.get_by_role("textbox", name="First chapter")
@@ -23,13 +27,16 @@ def test_text_area_multiple_visibility(page: Page):
     chapter_3 = page.get_by_role("textbox", name="Third chapter")
     submit = page.get_by_role("button", name="Submit")
 
+    # Check visibility for each text area
     expect(chapter_1).to_be_visible()
     expect(chapter_2).to_be_visible()
     expect(chapter_3).to_be_visible()
     expect(submit).to_be_visible()
 
+    # Create a container for storing the mandatory text area text
     chapter_1_value = page.get_by_role("textbox", name="First chapter").input_value()
 
+    # If the mandatory text area is empty, there should be no results after clicking submit
     if chapter_1_value == "":
         chapter_2.click()
         chapter_2.fill("2")
@@ -48,6 +55,7 @@ def test_text_area_multiple_visibility(page: Page):
         submit.click()
         expect(page.get_by_text("You entered")).not_to_be_visible()
 
+    # Fill in the chapters with different data
     chapter_1.click()
     chapter_1.fill("Jon")
     chapter_2.click()
@@ -56,6 +64,7 @@ def test_text_area_multiple_visibility(page: Page):
     chapter_3.fill("Lives")
     submit.click()
 
+    # Expect the results to be in this order after clicking submit
     expect(page.get_by_text("You entered")).to_be_visible()
     expect(page.get_by_text("Jon")).to_be_visible()
     expect(page.get_by_text("Snow")).to_be_visible()

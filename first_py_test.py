@@ -1,6 +1,7 @@
 import re
 from playwright.sync_api import Page, expect
 
+# This are my first tests created using the Playwight official documentation from "https://playwright.dev/"
 def test_has_title(page: Page):
 
     # Navigate to any page via URL

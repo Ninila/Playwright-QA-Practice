@@ -28,15 +28,6 @@ def test_submit_options(page: Page):
 
 # Completed, but I'm sure it can be improved/ Maybe if I had a list of all the options and I would've done something like expect substring (all_options[1]) in string (You selected Python)
 
-# Multiple Select Fields
-
-#    page.get_by_label("Choose the place you want to").select_option("1")
-#     page.get_by_label("Choose how you want to get").select_option("1")
-#     page.get_by_label("Choose when you want to go*").select_option("1")
-#     page.get_by_role("button", name="Submit").click()
-#     page.get_by_text("to go by car to the sea today").click()
-#     page.get_by_text("You selected to go by car to").click()
-
 def test_multiple_fields_visibility(page: Page):
     page.goto("https://www.qa-practice.com/elements/select/mult_select")
     expect(page.get_by_label("Choose the place you want to")).to_be_visible()
@@ -67,10 +58,10 @@ def test_selecting_options(page: Page):
                 val2 = c2.locator("option:checked").first.inner_text()
                 val3 = c3.locator("option:checked").first.inner_text()
 
-                # 4. Submit
+                # Submit
                 page.get_by_role("button", name="Submit").click()
 
-                # 5. Check if we actually got a result
+                # Check if we actually got a result
                 result_locator = page.get_by_text("You selected")
                 
                 if result_locator.is_visible():

@@ -2,15 +2,15 @@ import re
 from playwright.sync_api import Playwright, sync_playwright, expect
 
 
-# Change this:
+# These tests are made purly with codegen, on a page that has field for emails and passwords
+# Inputing this data and checking if the result was stored properly
+
 def test_run(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
     page = context.new_page()
 
-# To this:
 def test_run(page):
-    # Now you can jump straight to page.goto()
     page.goto("https://www.qa-practice.com/")
     page.get_by_role("link", name="Text input").click()
     expect(page.get_by_role("link", name="Text input")).to_be_visible
@@ -36,8 +36,6 @@ def test_run(page):
     page.get_by_role("textbox", name="Email*").fill("Alexandru.Test@gmail.com")
     page.get_by_role("textbox", name="Email*").press("Enter")
     
-    # Testing the failure of non existent locator
-    #expect(page.get_by_role("link", name="THIS DOES NOT EXIST")).to_be_visible()
 
     page.get_by_text("Alexandru.Test@gmail.com").click()
     page.get_by_text("Your input was:").click()
@@ -48,6 +46,5 @@ def test_run(page):
     page.get_by_role("textbox", name="Password*").fill("Cicaraua123")
     page.get_by_role("textbox", name="Password*").fill("Cicaraua1234$")
     
-    # ---------------------
-  
+
 
