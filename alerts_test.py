@@ -119,6 +119,6 @@ def test_prompt_alert_ok_withtext(page: Page):
 
     page.on("dialog", handle_dialog)
 
-    # Assert that clicking cancel will display the "You entered nothing" message
+    # Assert that clicking cancel will display the text "You entered nothing"
     page.get_by_role("link", name="Click").click()
     expect(page.get_by_text(f"You entered {prompt_input}")).to_be_visible()
