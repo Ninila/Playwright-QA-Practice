@@ -2,8 +2,9 @@ import re
 from playwright.sync_api import Playwright, sync_playwright, expect
 
 
-# These tests are made purly with codegen, on a page that has field for emails and passwords
+# These tests are made purly with codegen, on a page that has fields for emails and passwords
 # Inputing this data and checking if the result was stored properly
+# I haven't learned much yet
 
 def test_run(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)

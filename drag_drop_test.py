@@ -1,3 +1,6 @@
+# Here I had some fun manipulating elements with drag and drop
+# I'm starting to feel a lot more confidence 
+
 from playwright.sync_api import Page, expect
 
 url = "https://www.qa-practice.com/elements/dragndrop/boxes"

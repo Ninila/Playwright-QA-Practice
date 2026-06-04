@@ -1,3 +1,6 @@
+# Experimenting with text fields. I've came up with a for loop for filling in multiple elements
+# It's getting really fun
+
 import re
 from playwright.sync_api import Page, expect
 

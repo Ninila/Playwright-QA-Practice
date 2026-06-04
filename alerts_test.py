@@ -1,3 +1,6 @@
+# Working with dialog alerts, accepting, declining and filling in text fields for these.
+# This one was challenging, but who doesn't love a challenge?
+
 from playwright.sync_api import Page, expect
 
 url = "https://www.qa-practice.com/elements/alert/alert#"

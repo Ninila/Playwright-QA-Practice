@@ -1,3 +1,6 @@
+# Here I have different ways to select page content
+# I'm getting the hang of it
+
 import re
 from playwright.sync_api import Page, expect
 

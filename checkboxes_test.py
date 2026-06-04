@@ -1,3 +1,6 @@
+# Experimenting with different types of checkboxes
+# I feel more comfortable with Playwright
+
 import re
 from playwright.sync_api import Page, expect
 
